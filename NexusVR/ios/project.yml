@@ -1,0 +1,27 @@
+name: NexusVR
+options:
+  deploymentTarget:
+    iOS: '16.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    PRODUCT_BUNDLE_IDENTIFIER: com.nexuslab.mobilevr
+    CODE_SIGNING_ALLOWED: NO
+    TARGETED_DEVICE_FAMILY: '1'
+targets:
+  NexusVR:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Nexus VR
+        CFBundleShortVersionString: '0.1.0'
+        CFBundleVersion: '1'
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationLandscapeRight]
+        NSCameraUsageDescription: Reconocer manos y posición de cabeza mediante la cámara trasera.
+        NSLocalNetworkUsageDescription: Conectar con tu PC Nexus en la red local.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
