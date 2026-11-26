@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: brew install xcodegen
       - run: |
-          cd ios
+          cd NexusVR/ios
           xcodegen generate
           xcodebuild -project NexusVR.xcodeproj -scheme NexusVR -configuration Release -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
           mkdir -p Payload
@@ -24,14 +24,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: NexusVR-iOS-sin-firmar
-          path: ios/NexusVR-unsigned.ipa
+          path: NexusVR/ios/NexusVR-unsigned.ipa
 
   windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - run: git clone --depth 1 --branch v2.5.1 https://github.com/ValveSoftware/openvr.git sdk
-      - run: cmake -S driver -B build -A x64 -DOPENVR_ROOT="${{ github.workspace }}/sdk"
+      - run: cmake -S NexusVR/driver -B build -A x64 -DOPENVR_ROOT="${{ github.workspace }}/sdk"
       - run: cmake --build build --config Release
       - run: cmake --install build --config Release --prefix "${{ github.workspace }}/nexushands"
       - uses: actions/upload-artifact@v4
